@@ -1,21 +1,19 @@
-1
-2
-3    "name": "railtest",
-4    "version": "1.0.0",
-5    "description": "",
-6    "scripts": {
-7        "build": "echo \"No build specified\" && exit 1",
-8        "test": "echo \"No test specified\" && exit 1",
-9        "start": "node index.js"
-10    },
-11    "repository": {
-12        "type": "git",
-13        "url": "git+https://github.com/Tabla2181/railtest.git"
-14    },
-15    "author": "",
-16    "license": "ISC",
-17    "bugs": {
-18        "url": "https://github.com/Tabla2181/railtest/issues"
-19    },
-20    "homepage": "https://github.com/Tabla2181/railtest#readme"
-21}
+1    "name": "railtest",
+2    "version": "1.0.0",
+3    "description": "",
+4    "scripts": {
+5        "build": "echo \"No build specified\" && exit 1",
+6        "test": "echo \"No test specified\" && exit 1",
+7        "start": "node index.js"
+8    },
+9    "repository": {
+10        "type": "git",
+11        "url": "git+https://github.com/Tabla2181/railtest.git"
+12    },
+13    "author": "",
+14    "license": "ISC",
+15    "bugs": {
+16        "url": "https://github.com/Tabla2181/railtest/issues"
+17    },
+18    "homepage": "https://github.com/Tabla2181/railtest#readme"
+19}
