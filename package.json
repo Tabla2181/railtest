@@ -1,5 +1,5 @@
 1    "name": "railtest",
-2    "version": "1.0.0,",
+2    "version": "1",
 3    "description": "",
 4    "scripts": {
 5        "build": "echo \"No build specified\" && exit 1",
