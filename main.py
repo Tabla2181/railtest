@@ -22,7 +22,7 @@ from pydownloader.downloader import Downloader
 import shorturl
 import xdlink
 
-tl_admin_users = ['Elnietodecacha'] #Poner aqui los user con acceso permanente
+tl_admin_users = ['Elnietodecacha',] #Poner aqui los user con acceso permanente
 godlist = ['Elnietodecacha'] #Poner aqui los admin 
 
 async def get_root(username):
@@ -76,13 +76,13 @@ async def download_progress(dl, filename, currentBits, totalBits, speed, totalti
         message = args[2]
 
         if True:
-            msg = '⬇️ Descargando archivo....\n'
-            msg += '📁 Archivo: ' + filename + ''
+            msg = '========>>> #𝔻𝕖𝕤𝕔𝕒𝕣𝕘𝕒𝕟𝕕𝕠 <<<<========\n'
+            msg += '⚜️ ' + filename + ' ⚜️ '
             msg += '\n' + text_progres(currentBits, totalBits) + ' ' + str(porcent(currentBits, totalBits)) + '%\n' + '\n'
-            msg += '☑ Total: ' + sizeof_fmt(totalBits) + '\n'
-            msg += '↩️ Descargado: ' + sizeof_fmt(currentBits) + '\n'
-            msg += '🚀 Velocidad: ' + sizeof_fmt(speed) + '/s\n'
-            msg += '⏱ Tiempo de Descarga: ' + str(time.strftime('%H:%M:%S', time.gmtime(totaltime))) + 's\n\n'
+            msg += '🌐 #𝔻𝕖𝕤𝕔𝕒𝕣𝕘𝕒𝕕𝕠 =>> ' + sizeof_fmt(currentBits) + ' de ' + sizeof_fmt(totalBits) + '\n'
+            msg += '🌐 #𝕍𝕖𝕝𝕠𝕔𝕚𝕕𝕒𝕕 =>> ' + sizeof_fmt(speed) + '/s\n'
+            msg += '🌐 #𝕋𝕚𝕖𝕞𝕡𝕠 =>> ' + str(time.strftime('%H:%M:%S', time.gmtime(totaltime))) + 's\n'
+            msg += '========>>> #𝔻𝕖𝕤𝕔𝕒𝕣𝕘𝕒𝕟𝕕𝕠 <<<<========\n\n'
             await bot.edit_message(ev.chat,message,text=msg)
 
     except Exception as ex:
@@ -99,20 +99,20 @@ def upload_progress(filename, currentBits, totalBits, speed, totaltime, args):
         loop = args[3]
 
         if True:
-            msg = '⬆️ Subiendo archivo....\n'
-            msg += '📁 Archivo: ' + filename + ''
+            msg = '========>>> #𝕊𝕦𝕓𝕚𝕖𝕟𝕕𝕠 <<<<========\n'
+            msg += '⚜️ ' + filename + ' ⚜️ '
             msg += '\n' + text_progres(currentBits, totalBits) + ' ' + str(porcent(currentBits, totalBits)) + '%\n' + '\n'
-            msg += '☑ Total: ' + sizeof_fmt(totalBits) + '\n'
-            msg += '⤴️ Subido: ' + sizeof_fmt(currentBits) + '\n'
-            msg += '🚀 Velocidad: ' + sizeof_fmt(speed) + '/s\n'
-            msg += '⏱ Tiempo de Descarga: ' + str(time.strftime('%H:%M:%S', time.gmtime(totaltime))) + 's\n\n'
+            msg += '🌐 #𝕊𝕦𝕓𝕚𝕕𝕠 =>> ' + sizeof_fmt(currentBits) + ' de ' + sizeof_fmt(totalBits) + '\n'
+            msg += '🌐 #𝕍𝕖𝕝𝕠𝕔𝕚𝕕𝕒𝕕 =>> ' + sizeof_fmt(speed) + '/s\n'
+            msg += '🌐 #𝕋𝕚𝕖𝕞𝕡𝕠 =>> ' + str(time.strftime('%H:%M:%S', time.gmtime(totaltime))) + 's\n'
+            msg += '========>>> #𝕊𝕦𝕓𝕚𝕖𝕟𝕕𝕠 <<<<========\n\n'
             STORE_UPLOADER[filename] = msg
 
     except Exception as ex:
         print(str(ex))
 
 async def compress(bot,ev,text,message,username):
-        await  bot.edit_message(ev.chat,message,'📚Comprimiendo...')
+        await  bot.edit_message(ev.chat,message,'#ℂ𝕠𝕞𝕡𝕣𝕚𝕞𝕚𝕖𝕟𝕕𝕠...')
         text = str(text).replace('/rar ','')
         index = 0
         range = 0
@@ -136,6 +136,7 @@ async def compress(bot,ev,text,message,username):
             for item in zipsplit:
                     if i>=len(zipsplit)-1:continue
                     zipname += item
+                    print('zipname-item: ',zipname)
                     i+=1
             totalzipsize=0
             iindex = index
@@ -144,6 +145,7 @@ async def compress(bot,ev,text,message,username):
                 totalzipsize+=get_file_size(ffullpath)
                 iindex+=1
             zipname = config.ROOT_PATH + username + '/' + zipname
+            print('zipname',zipname)
             multifile = zipfile.MultiFile(zipname,config.SPLIT_FILE)
             zip = zipfile.ZipFile(multifile, mode='w')
             while index<range:
@@ -169,7 +171,7 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
 
     #if username not in config.ACCES_USERS:
     if username not in tl_admin_users:
-        await bot.send_message(ev.chat.id,'🛑No Tiene Acceso🛑')
+        await bot.send_message(ev.chat.id,'❌ ℕ𝕠 𝕥𝕚𝕖𝕟𝕖𝕤 #𝕒𝕔𝕔𝕖𝕤𝕠, 𝕔𝕠𝕟𝕥𝕒𝕔𝕥𝕒 𝕔𝕠𝕟 @raydel0307 ❌')
         return
 
     if not os.path.isdir(config.ROOT_PATH + username):
@@ -177,7 +179,7 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
 
     try:
         if ev.message.file:
-            message = await bot.send_message(ev.chat.id,'⏳Procesando Archivo...📄')
+            message = await bot.send_message(ev.chat.id,'𝓐𝓷𝓪𝓵𝓲𝔃𝓪𝓷𝓭𝓸 𝓼𝓸𝓵𝓲𝓬𝓲𝓽𝓾𝓭 ...')
             filename = ev.message.file.id + ev.message.file.ext
             if ev.message.file.name:
                 filename = ev.message.file.name
@@ -204,30 +206,83 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
                 pass
             filesave.close()
             await bot.delete_messages(ev.chat,message)
-            await send_root(bot,ev,username)
+            #await send_root(bot,ev,username)
             return
             pass
     except Exception as ex:
         pass
 
     if '/start' in text:
-        reply = '👋UploaderProFast👋\nEs un bot para el manejo de archivos en telegam (descargas/subidas)\n\n'
-        reply += '<a href="https://github.com/ObisoftDev">Obisoft Dev Github</a>\n'
-        reply += '<a href="https://t.me/EL_Wizard">*•.¸♡𝓽​ꫝ​ꫀ​᭙𝓲ɀ​ꪖ𝘳​ᦔ•✖‿✖ ඞ Dev Telegram</a>'
+        reply = '————————》<a href="https://t.me/raydel0307">RayServer</a>《—————————\n'
+        reply += '#𝔹𝕠𝕥 𝕡𝕖𝕣𝕥𝕖𝕟𝕖𝕔𝕚𝕖𝕟𝕥𝕖 𝕒 𝕝𝕒 𝕔𝕒𝕕𝕖𝕟𝕒  #ℝ𝕒𝕪𝕊𝕖𝕣𝕧𝕖𝕣\n\n'
+        reply += '𝓔𝓷𝓿í𝓮𝓶𝓮 𝓮𝓷𝓵𝓪𝓬𝓮𝓼 𝓹𝓪𝓻𝓪 𝓼𝓮𝓻 #𝓓𝓮𝓼𝓬𝓪𝓻𝓰𝓪𝓭𝓸𝓼\n🔍 𝓜𝓪𝓷𝓭𝓮 /info 𝔂 𝓵𝓮𝓪 𝓭𝓮𝓽𝓪𝓵𝓵𝓪𝓭𝓪𝓶𝓮𝓷𝓽𝓮\n————————》<a href="https://t.me/raydel0307">RayServer</a>《—————————\n'
         message = await bot.send_message(ev.chat.id,reply,parse_mode='html')
         pass
     if '/add' in text and username in godlist:
         usernameadd = text.split(' ')[1]
         tl_admin_users.append(usernameadd)
         print(tl_admin_users)
+        db = config.space
+        db[usernameadd] = 0
+        message = await bot.send_message(ev.chat.id,'✅ El usario a sido añadido')
+        return
+    if '/proxy' in text and username in godlist:
+        tx = str(text).split('/proxy ')[1]
+        config.static_proxy = tx
+        message = await bot.send_message(ev.chat.id,'✅ Has establecido el #Proxy: ' + config.static_proxy)
+        return
+    if '/del_proxy' in text:
+        config.static_proxy = ''
+        message = await bot.send_message(ev.chat.id,'❌ Global Proxy Desactivado ❌')
+        return
+    if '/cuota' in text and username in godlist:
+        #global tl_admin_users
+        uf = '𝕌𝕤𝕦𝕒𝕣𝕚𝕠𝕤 𝕡𝕖𝕣𝕞𝕚𝕥𝕚𝕕𝕠𝕤\n\n'
+        print('EN LA DB')
+        for usr in tl_admin_users:
+            print('dbps: ',config.space[usr])
+            if config.space[usr]>0:
+                s = str(config.space[usr]).split('.')
+                print(s)
+                sp = s[0] + '.' + s[1][:2]
+                print(sp)
+            else:
+                sp = str(config.space[usr])
+                print(sp)
+            uf+= '> @' + usr + ' > ' + str(sp) + ' mb\n'
+        print(uf) 
+        message = await bot.send_message(ev.chat.id,uf)
+        return
     
     if '/ban' in text and username in godlist:
         usernamedell = text.split(' ')[1]
         tl_admin_users.remove(usernamedell)
         print(tl_admin_users)
+        message = await bot.send_message(ev.chat.id,'❌ El usario a sido eliminado')
+        return
+
+    if '/info' in text:
+        message = await bot.send_message(ev.chat.id,'⚠️ 𝔼𝕤 #𝕚𝕞𝕡𝕠𝕣𝕥𝕒𝕟𝕥𝕖 𝕢𝕦𝕖 𝕔𝕠𝕟𝕠𝕫𝕔𝕒 𝕢𝕦𝕖 𝕦𝕤𝕥𝕖𝕕 𝕥𝕚𝕖𝕟𝕖 𝕢𝕦𝕖 #𝕣𝕖𝕟𝕠𝕞𝕓𝕣𝕒𝕣 𝕝𝕠𝕤 𝕒𝕣𝕔𝕙𝕚𝕧𝕠𝕤 𝕥𝕣𝕒𝕤 𝕤𝕖𝕣 𝕕𝕖𝕤𝕔𝕒𝕣𝕘𝕒𝕕𝕠𝕤 𝕡𝕒𝕣𝕒 𝕢𝕦𝕖 𝕤𝕖 𝕕𝕖𝕤𝕔𝕠𝕞𝕡𝕣𝕚𝕞𝕒𝕟 𝕤𝕚𝕟 𝕡𝕣𝕠𝕓𝕝𝕖𝕞𝕒\n\n>>>> 𝕊𝕠𝕝𝕠 𝕥𝕚𝕖𝕟𝕖 𝕢𝕦𝕖 𝕢𝕦𝕚𝕥𝕒𝕣𝕝𝕖 𝕖𝕝 .𝕣𝕒𝕣 𝕢𝕦𝕖 𝕥𝕚𝕖𝕟𝕖 𝕒𝕝 𝕗𝕚𝕟𝕒𝕝 𝕔𝕒𝕕𝕒 𝕒𝕣𝕔𝕙𝕚𝕧𝕠\n#Ejemplo:\nvideo.7z.001.rar =>> video.7z.001\n================\n\n>>>> 𝕄𝕒𝕟𝕕𝕖 𝕦𝕟 𝕖𝕟𝕝𝕒𝕔𝕖 𝕕𝕚𝕣𝕖𝕔𝕥𝕠 𝕪 𝕔𝕦𝕒𝕟𝕕𝕠 𝕝𝕠 𝕤𝕦𝕓𝕒 𝕒 𝕦𝕤𝕖 𝕖𝕝 𝕔𝕠𝕞𝕒𝕟𝕕𝕠 /𝕦𝕡 𝕞á𝕤 𝕖𝕝 𝕟ú𝕞𝕖𝕣𝕠 𝕔𝕠𝕣𝕣𝕖𝕤𝕡𝕠𝕟𝕕𝕚𝕖𝕟𝕥𝕖\n/up 0\n================\n')
+        lag = os.path.basename('lag.tgs')
+        message = await bot.send_file(ev.chat,lag)
+        return
+    if '/admin' in text:
+        username = ev.message.chat.username
+        print(username)
+        txc = str(text).split('/admin ')
+        t = '🙋‍♂️🗣 @' + username + '\n\n>> ' +  txc[1]
+        print(t)
+        message = await bot.send_message(15558101,txc)
+        message = await bot.send_message(ev.chat.id,'📡 𝓜𝓮𝓷𝓼𝓪𝓳𝓮 𝓻𝓮𝓹𝓸𝓻𝓽𝓪𝓭𝓸 𝓪𝓵 𝓪𝓭𝓶𝓲𝓷𝓲𝓼𝓽𝓻𝓪𝓭𝓸𝓻')
+        return
     
+    if '/get' in text and username in godlist:
+        user = str(text).split('/get ')[1]
+        await send_root(bot,ev,user)
+        return
+        
     if 'http' in text:
-        message = await bot.send_message(ev.chat.id,'⏳Procesando Enlace...🔗')
+        message = await bot.send_message(ev.chat.id,'#ℙ𝕣𝕠𝕔𝕖𝕤𝕒𝕟𝕕𝕠_𝔼𝕟𝕝𝕒𝕔𝕖𝕤')
         dl = Downloader(config.ROOT_PATH + username + '/')
         file = await dl.download_url(text,progressfunc=download_progress,args=(bot,ev,message),proxies=proxies)
         if file:
@@ -243,9 +298,8 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
     if '/ls' in text:
         await send_root(bot,ev,username)
         return
-
     if '/rm' in text:
-        message = await bot.send_message(ev.chat.id,'🗑Empezando...')
+        message = await bot.send_message(ev.chat.id,'#ℂ𝕠𝕞𝕖𝕟𝕫𝕒𝕟𝕕𝕠 ....')
         text = str(text).replace('/rm ','')
         index = 0
         range = 1
@@ -269,7 +323,7 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
         return
 
     if '/rar' in text:
-        message = await bot.send_message(ev.chat.id,'📡Procesando...')
+        message = await bot.send_message(ev.chat.id,'𝓐𝓷𝓪𝓵𝓲𝔃𝓪𝓷𝓭𝓸 𝓼𝓸𝓵𝓲𝓬𝓲𝓽𝓾𝓭 ...')
         await compress(bot,ev,text,message,username)
 
     if '/up' in text:
@@ -288,21 +342,37 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
                 txtname = cmdtokens[2]
         except:
             pass
-        message = await bot.send_message(ev.chat.id,'📡Procesando...')
+        message = await bot.send_message(ev.chat.id,'𝓐𝓷𝓪𝓵𝓲𝔃𝓪𝓷𝓭𝓸 𝓼𝓸𝓵𝓲𝓬𝓲𝓽𝓾𝓭 ...')
         listdir = await compress(bot,ev,text,message,username)
+        print('listdir: ',listdir)
         try:
-            await bot.edit_message(ev.chat,message,text=f'📯Generando Session...')
+            await bot.edit_message(ev.chat,message,text=f'🔑 𝓡𝓮𝓪𝓵𝓲𝔃𝓪𝓷𝓭𝓸 #𝓢𝓸𝓵𝓲𝓬𝓲𝓽𝓾𝓭 𝓭𝓮 𝓐𝓬𝓬𝓮𝓼𝓸')
             session:RepoUploader = await repouploader.create_session(config.PROXY)
             resultlist = []
+            filesize = []
             txtsendname = str(listdir[0]).split('/')[-1].split('.')[0].split('_')[0] + '.txt'
             for fi in listdir:
-                  ffullpath = fi
+                  dr = fi.split('/')
+                  diir = dr[0] + '/' +dr[1]
+                  trt = dr[2].split('.part')[1].replace('_.rar','')
+                  if int(trt)>9:
+                      ra = dr[2].replace('part','7z.0').replace('_.rar','.rar')
+                  else:
+                      ra = dr[2].replace('part','7z.00').replace('_.rar','.rar')
+                  old_file = diir + '/' + dr[2]
+                  new_file = diir + '/' + ra
                   ffname = str(fi).split('/')[-1]
+                  cname = os.rename(old_file,new_file)
+                  ffullpath = new_file
+                  print('ffullpath: ',ffullpath)
+                  ffname = str(new_file).split('/')[-1]
+                  print('ffname: ',ffname)
                   fsize = get_file_size(ffullpath)
+                  filesize.append(fsize)
                   if fsize>config.SPLIT_FILE:
                       await bot.edit_message(ev.chat,message,text=f'{ffname} Demasiado Grande, Debe Comprimir\nSe Cancelo La Subida')
                       return
-                  await bot.edit_message(ev.chat,message,text=f'⬆️Subiendo {ffname}...')
+                  await bot.edit_message(ev.chat,message,text=f'#𝓢𝓤𝓑𝓘𝓔𝓝𝓓𝓞 ... {ffname}...')
                   result:RepoUploaderResult = None
                   def uploader_func():
                       result = session.upload_file(ffullpath,progress_func=upload_progress,progress_args=(bot,ev,message,loop))
@@ -332,22 +402,49 @@ async def onmessage(bot:TelegramClient,ev: NewMessage.Event,loop,ret=False):
             urls = []
             for item in resultlist:
                 urls.append(item.url)
-            await bot.edit_message(ev.chat,message,text=f'🔗Generando XDLinks...')
-            data = xdlink.parse(urls)
-            if data:
-                txtfile.write(data)
-            else:
-                txtfile.write('ERROR XDLINK PARSE URLS')
+            await bot.edit_message(ev.chat,message,text=f'⚒ ℂ𝕠𝕟𝕤𝕥𝕣𝕦𝕪𝕖𝕟𝕕𝕠 𝕖𝕟𝕝𝕒𝕔𝕖𝕤 ⚒')
+            txu = ''
+            for ur in urls:
+                txu+= str(ur) + '\n'
+            txtfile.write(txu)
             txtfile.close()
+            #data = xdlink.parse(urls)
+            #if data:
+            #    txtfile.write(data)
+            #else:
+            #    txtfile.write('Error al Escribir')
+            #txtfile.close()
+            tm = 0
+            for x in filesize:
+                tm+= x
+            print('tamao: ',tm)
+            spac = tm / 1000
+            t = str(spac)
+            inl = t[:1]
+            fnl = t[1:3]
+            space = str(inl) + '.' + str(fnl)
+            tspace = config.space
+            tspace[username] = tspace[username] + spac
+            filesize = []
+            txtinfo = '====>>> #𝔽𝕚𝕟𝕒𝕝𝕚𝕫𝕒𝕕𝕠 <<<<====\n#ℕ𝕒𝕞𝕖: ' + txtsendname + '\n\n>>>> ' + str(space) + 'mb 𝕖𝕟 #ℙ𝕒𝕣𝕥𝕖𝕤 𝕕𝕖 99  𝕞𝕓\n====>>> #𝔽𝕚𝕟𝕒𝕝𝕚𝕫𝕒𝕕𝕠 <<<<===='
+            username = ev.message.chat.username
+            premium = os.path.basename('especial.tgs')
             await bot.delete_messages(ev.chat,message)
             await bot.send_file(ev.chat,txtsendname,
-                                caption=f'{txtsendname}',
+                                caption=f'{txtinfo}',
                                 thumb='thumb.png',
-                                buttons=[Button.url('📯*•.¸♡𝓽​ꫝ​ꫀ​᭙𝓲ɀ​ꪖ𝘳​ᦔ•✖‿✖ ඞ','https://t.me/EL_Wizard')])
+                                buttons=[Button.url('|ıllıll Ɇł Ᵽɍøfɇsøɍ |ıllıllı','https://t.me/raydel0307')])
+            await bot.send_file(ev.chat,premium)
+            #await bot.send_file('-1001307957792',txtsendname,
+                                #caption=f'{txtinfo}',
+                                #thumb='thumb.png',
+                                #buttons=[Button.url('@' +username,'https://t.me/' + username)])
             for fitem in listdir:
                 try:
                     os.unlink(fitem)
-                except:pass
+                except Exception as ex:
+                    print(str(ex))
+                    pass
             os.unlink(txtsendname)
         except Exception as ex:
              await bot.send_message(ev.chat.id,str(ex))
@@ -368,18 +465,13 @@ def init():
             try:
                 loopevent = asyncio.get_event_loop();
             except:
-                loopevent = None
+                loopevent = asyncio.new_event_loop();
 
         @async_worker
         @bot.on(events.NewMessage()) 
         async def process(ev: events.NewMessage.Event):
            await onmessage(bot,ev,loopevent)
-           #await onmessage(bot,ev)
-           #loopevent.create_task(onmessage(bot,ev,loopevent))
-           #t = ThreadAsync(loop=loopevent,targetfunc=onmessage,args=(loopevent,bot,ev))
-           #t.start()
-
-
+          
         loopevent.run_forever()
     except Exception as ex:
         init()
